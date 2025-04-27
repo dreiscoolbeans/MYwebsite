@@ -18,6 +18,14 @@
       overflow: hidden;
       background-color: black;
       position: relative;
+      
+      /* Custom Cursor - made smaller */
+      cursor: url('images/reddot.png') 4 4, auto;  /* Adjust the 4 4 for smaller cursor */
+    }
+
+    /* Make the cursor smaller when hovering over a button */
+    button, .portfolio-btn {
+      cursor: url('images/reddot.png') 4 4, pointer;  /* Applied custom cursor to button */
     }
 
     /* Background video */
@@ -113,9 +121,14 @@
       white-space: nowrap;
     }
 
-    /* Portfolio button */
+    /* Portfolio Button */
     .portfolio-btn {
-      top: 55%;
+      position: absolute;
+      top: 54%; /* Moved the button closer to the h2 text */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px; /* Adjust width for smaller button */
+      height: auto;
     }
 
     .portfolio-btn:hover {
@@ -136,7 +149,7 @@
     }
 
     .enter-btn:hover {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(255, 255, 0.2);
       color: red;
     }
 
@@ -224,8 +237,11 @@
       <h2 class="hello-you proza-libre-semibold">Malware & Media Development ++</h2>  <!-- Applied semibold font class -->
     </div>
 
-    <!-- Portfolio Button -->
-    <button class="portfolio-btn proza-libre-semibold" onclick="window.location.href='https://www.youtube.com'">Portfolio - SOON</button>  <!-- Applied semibold font class -->
+    <!-- Portfolio Button (as a gif) -->
+    <a href="https://www.youtube.com" target="_blank">
+      <img src="images/Icon.gif" alt="Portfolio - SOON" class="portfolio-btn">
+    </a>
+
   </div>
 
   <!-- Enter Button -->
