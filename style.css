@@ -1,0 +1,81 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Arial';
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content{
+    text-align: center;
+}
+
+.content h1{
+    font-size: 60px;
+    color: #fff;
+    margin-bottom: 50px;
+}
+
+.content a{
+    font-size: 23px;
+    color: #fff;
+    text-decoration: none;
+    border: 2px solid #fff;
+    padding: 15px 25px;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.content a:hover{
+    background-color: #fff;
+    color: #000;
+}
+
+.background-clip{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+@media (min-aspect-ratio:16/9) {
+    .background-clip{
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-aspect-ratio:16/9) {
+    .background-clip{
+        width: auto;
+        height: 100%;
+    }
+}
+
+.stay-weird-container {
+    position: absolute;
+    top: 20%; /* Slightly smaller spacing */
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    z-index: 9;
+    padding: 20px 40px; /* Adjusted padding for better fit */
+    background-image: url('images/sparkle_white.gif'); /* Add the GIF you want to use */
+    background-size: cover; /* Let the GIF cover the container */
+    background-repeat: no-repeat; /* Prevent GIF from repeating */
+    background-position: center; /* Center the GIF */
+    border-radius: 10px;
+    color: transparent; /* Text color hidden because GIF shows around it */
+    font-size: 60px; /* Same size as text */
+    text-align: center;
+    font-weight: bold;
+    white-space: nowrap; /* Prevent text wrapping */
+}

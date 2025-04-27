@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dre.</title>
+
+  <!-- Google Fonts link for Proza Libre font -->
+  <link href="https://fonts.googleapis.com/css2?family=Proza+Libre:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    /* Full page setup */
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Proza Libre', sans-serif; /* Applied Proza Libre Semibold font */
+      overflow: hidden;
+      background-color: black;
+      position: relative;
+    }
+
+    /* Background video */
+    #background-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    /* Particle Canvas */
+    #particle-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Button styling */
+    button {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 25px 70px;
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      border-radius: 20px;
+      cursor: pointer;
+      z-index: 10;
+      font-size: 20px;
+      transition: opacity 0.5s ease-out;
+      font-family: 'Proza Libre', sans-serif; /* Applied Proza Libre Semibold font */
+    }
+
+    button:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: red;
+    }
+
+    /* Main content hidden initially */
+    .main-content {
+      display: none;
+      text-align: center;
+      color: white;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      opacity: 0;
+      transition: opacity 0.1s ease-in;  /* Updated to 0.1s */
+    }
+
+    .main-content.active {
+      display: block;
+      opacity: 1;
+    }
+
+    /* Stay Weird text container */
+    .stay-weird-container {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9;
+      color: white;
+      font-size: 40px; /* Made Dre. smaller */
+      font-weight: 600; /* Applied semibold weight */
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* New Hello You text container */
+    .hello-you-container {
+      position: absolute;
+      top: 48%; /* Positioned below Dre. text */
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 20px; /* Smaller than Dre. text */
+      font-weight: 600; /* Applied semibold weight */
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* Portfolio button */
+    .portfolio-btn {
+      top: 55%;
+    }
+
+    .portfolio-btn:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: red;
+    }
+
+    /* Hide Enter Site Button */
+    .enter-button-hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .enter-btn {
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+    }
+
+    .enter-btn:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: red;
+    }
+
+    /* Apply custom font classes for various font weights */
+    .proza-libre-regular {
+      font-family: "Proza Libre", sans-serif;
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    .proza-libre-medium {
+      font-family: "Proza Libre", sans-serif;
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    .proza-libre-semibold {
+      font-family: "Proza Libre", sans-serif;
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    .proza-libre-bold {
+      font-family: "Proza Libre", sans-serif;
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    .proza-libre-extrabold {
+      font-family: "Proza Libre", sans-serif;
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    .proza-libre-regular-italic {
+      font-family: "Proza Libre", sans-serif;
+      font-weight: 600;
+      font-style: italic;
+    }
+
+    .proza-libre-medium-italic {
+      font-family: "Proza Libre", sans-serif;
+      font-weight: 600;
+      font-style: italic;
+    }
+
+    .proza-libre-semibold-italic {
+      font-family: "Proza Libre", sans-serif;
+      font-weight: 600;
+      font-style: italic;
+    }
+
+    .proza-libre-bold-italic {
+      font-family: "Proza Libre", sans-serif;
+      font-weight: 600;
+      font-style: italic;
+    }
+
+    .proza-libre-extrabold-italic {
+      font-family: "Proza Libre", sans-serif;
+      font-weight: 600;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background video -->
+  <video id="background-video" muted loop>
+    <source src="images/video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Particle Canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Main Content (hidden initially) -->
+  <div class="main-content">
+    <div class="stay-weird-container">
+      <h1 class="stay-weird proza-libre-semibold">Dre.</h1>  <!-- Applied semibold font class -->
+    </div>
+
+    <!-- New "Hello you" Text -->
+    <div class="hello-you-container">
+      <h2 class="hello-you proza-libre-semibold">Malware & Media Development ++</h2>  <!-- Applied semibold font class -->
+    </div>
+
+    <!-- Portfolio Button -->
+    <button class="portfolio-btn proza-libre-semibold" onclick="window.location.href='https://www.youtube.com'">Portfolio - SOON</button>  <!-- Applied semibold font class -->
+  </div>
+
+  <!-- Enter Button -->
+  <button class="enter-btn proza-libre-semibold" onclick="startSite()">Enter Site</button>  <!-- Applied semibold font class -->
+
+  <!-- Audio element -->
+  <audio id="bg-audio" loop>
+    <source src="images/audio.mp3" type="audio/mpeg">
+    Browser does not support this.
+  </audio>
+
+  <script>
+    function startSite() {
+      const audio = document.getElementById('bg-audio');
+      audio.play();
+
+      const video = document.getElementById('background-video');
+      video.play();
+      video.style.opacity = 1;
+
+      const enterButton = document.querySelector('.enter-btn');
+      enterButton.classList.add('enter-button-hidden');
+
+      const mainContent = document.querySelector('.main-content');
+
+      // Adding the fade-in effect for main content
+      setTimeout(function() {
+        mainContent.classList.add('active');  // Make content visible after delay
+      }, 100);  // Slight delay before the fade-in effect starts
+
+      initParticles();
+    }
+
+    // --- Particle animation setup ---
+    let canvas, ctx, particlesArray = [];
+
+    function initParticles() {
+      canvas = document.getElementById('particle-canvas');
+      ctx = canvas.getContext('2d');
+      resizeCanvas();
+      createParticles();
+      animateParticles();
+    }
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      createParticles();
+    });
+
+    function createParticles() {
+      particlesArray = [];
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight * 0.4; // Match "Dre." text position
+      for (let i = 0; i < 80; i++) {
+        particlesArray.push({
+          x: centerX + (Math.random() - 0.5) * 150,  // tighter horizontal spread
+          y: centerY + (Math.random() - 0.5) * 80,   // tighter vertical spread
+          size: Math.random() * 2 + 0.5,
+          speedX: (Math.random() - 0.5) * 0.4,
+          speedY: (Math.random() - 0.5) * 0.4,
+          opacity: Math.random(),
+          blur: Math.random() < 0.5 ? 5 : 0
+        });
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particlesArray.length; i++) {
+        const p = particlesArray[i];
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight * 0.4;
+        const limitX = 75; // smaller movement box
+        const limitY = 40;
+
+        if (p.x < centerX - limitX || p.x > centerX + limitX) p.speedX = -p.speedX;
+        if (p.y < centerY - limitY || p.y > centerY + limitY) p.speedY = -p.speedY;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+
+        if (p.blur) {
+          ctx.shadowColor = "white";
+          ctx.shadowBlur = p.blur;
+        } else {
+          ctx.shadowBlur = 0;
+        }
+
+        ctx.fill();
+        ctx.closePath();
+      }
+      requestAnimationFrame(animateParticles);
+    }
+  </script>
+
+</body>
+</html>
