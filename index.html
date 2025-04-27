@@ -10,8 +10,8 @@
     body, html {
       height: 100%;
       margin: 0;
-      font-family: 'Proza Libre', sans-serif; 
-      background-color: black; 
+      font-family: 'Proza Libre', sans-serif; /* Ensuring the entire page uses this font */
+      background-color: black; /* Keep background black initially */
       cursor: url('images/reddot.png') 4 4, auto;
       overflow: hidden;
       display: flex;
@@ -31,7 +31,7 @@
     }
 
     .enter-btn {
-      position: fixed; 
+      position: fixed; /* Change to fixed to cover the entire screen */
       top: 0;
       left: 0;
       width: 100vw;
@@ -39,8 +39,8 @@
       background-color: transparent;
       color: white;
       border: 2px solid rgba(255, 255, 255, 0);
-      font-family: 'Proza Libre', sans-serif; 
-      font-size: 40px; 
+      font-family: 'Proza Libre', sans-serif; /* Ensure font is applied here as well */
+      font-size: 40px; /* Make font bigger for visibility */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -90,10 +90,17 @@
       object-fit: cover;
     }
 
-    .mouse-box h1, .mouse-box h2 {
+    .mouse-box h1 {
       margin: 10px 0;
       color: white;
-      font-family: 'Proza Libre', sans-serif; 
+      font-family: 'Proza Libre', sans-serif;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 1.0); /* Slightly larger and more spread-out white glow */
+    }
+
+    .mouse-box h2 {
+      margin: 10px 0;
+      color: white;
+      font-family: 'Proza Libre', sans-serif;
     }
 
     .portfolio-btn {
@@ -111,7 +118,7 @@
     Your browser does not support the video tag.
   </video>
 
-  <!-- Mouse Box -->
+  <!-- Mouse Box (Initially Hidden) -->
   <div id="mouseBox" class="mouse-box">
     <div class="circle-image">
       <img src="images/pfp.jpg" alt="Image Inside Circle">
@@ -129,15 +136,15 @@
   <script>
     function startSite() {
       const video = document.getElementById('background-video');
-      video.muted = false;      
-      video.volume = 1.0;
+      video.muted = false;       // ✅ Unmute the video
+      video.volume = 1.0;         // ✅ Full volume
       video.play();
       video.style.opacity = 1;
 
-      document.querySelector('.enter-btn').style.display = 'none';
-      document.getElementById('mouseBox').style.display = 'flex';  
+      document.querySelector('.enter-btn').style.display = 'none'; // hide button
+      document.getElementById('mouseBox').style.display = 'flex';  // show box
 
-      // Apply the vignette effect
+      // Apply the stronger vignette effect
       document.body.style.background = 'radial-gradient(circle, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 1) 80%)';
     }
 
@@ -149,9 +156,9 @@
       const deltaX = event.clientX - centerX;
       const deltaY = event.clientY - centerY;
 
-      
-      const rotateX = (deltaY / centerY) * 30; // exaggerate rotation
-      const rotateY = (deltaX / centerX) * -30; // exaggerate rotation
+      // More exaggerated rotation
+      const rotateX = (deltaY / centerY) * 15; // exaggerate rotation
+      const rotateY = (deltaX / centerX) * -15; // exaggerate rotation
 
       mouseBox.style.transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
