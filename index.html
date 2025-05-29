@@ -1,66 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dre.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Proza+Libre:wght@600&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Proza+Libre:wght@600&display=swap" rel="stylesheet" />
   <style>
-    body, html {
-      height: 100%;
+    html, body {
       margin: 0;
-      font-family: 'Proza Libre', sans-serif; /* Ensuring the entire page uses this font */
-      background-color: black; /* Keep background black initially */
+      font-family: 'Proza Libre', sans-serif;
+      background-color: black;
       cursor: url('images/reddot.png') 4 4, auto;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      overflow-x: hidden;
       transition: background 1s ease-in-out;
+      color: white;
     }
 
     #background-video {
-      position: absolute;
+      position: fixed;
       width: 100%;
       height: 100%;
       object-fit: cover;
       opacity: 0;
       transition: opacity 1s ease-in;
-      z-index: 1;
+      z-index: -1;
     }
 
     .enter-btn {
-      position: fixed; /* Change to fixed to cover the entire screen */
+      position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
       background-color: transparent;
       color: white;
-      border: 2px solid rgba(255, 255, 255, 0);
-      font-family: 'Proza Libre', sans-serif; /* Ensure font is applied here as well */
-      font-size: 40px; /* Make font bigger for visibility */
+      border: none;
+      font-size: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
       cursor: pointer;
-      z-index: 5;
+      z-index: 10;
     }
 
     .enter-btn:hover {
-      background-color: rgba(255, 255, 255, 0);
       color: red;
     }
 
     .mouse-box {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       width: 650px;
       height: 400px;
+      margin: 220px auto 60px; /* Top spacing, centered horizontally, bottom spacing */
       background-color: rgba(255, 255, 255, 0.08);
       border: 2px solid white;
       border-radius: 20px;
@@ -74,7 +65,9 @@
       z-index: 10;
       backdrop-filter: blur(10px);
       perspective: 1000px;
+      margin-bottom: 320px;
     }
+
 
     .circle-image {
       width: 120px;
@@ -90,17 +83,11 @@
       object-fit: cover;
     }
 
-    .mouse-box h1 {
-      margin: 10px 0;
-      color: white;
-      font-family: 'Proza Libre', sans-serif;
-      text-shadow: 0 0 15px rgba(255, 255, 255, 1.0); /* Slightly larger and more spread-out white glow */
-    }
-
+    .mouse-box h1,
     .mouse-box h2 {
       margin: 10px 0;
       color: white;
-      font-family: 'Proza Libre', sans-serif;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 1.0);
     }
 
     .portfolio-btn {
@@ -108,59 +95,128 @@
       height: 50px;
       margin-top: 20px;
     }
+
+    #portfolio {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #portfolio h1 {
+      color: white;
+      font-size: 32px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    #portfolio p.description {
+      color: white;
+      font-size: 16px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .portfolio-items {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .portfolio-item {
+      text-align: center;
+    }
+
+    .portfolio-item img {
+      width: 450px;
+      height: 275px;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+
+    .portfolio-item p {
+      color: white;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
 
   <!-- Background video -->
-  <video id="background-video" loop>
+  <video id="background-video" loop muted>
     <source src="images/video.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
-  <!-- Mouse Box (Initially Hidden) -->
+  <!-- Enter Button -->
+  <button class="enter-btn" onclick="startSite()">Enter Site</button>
+
+  <!-- Mouse Box -->
   <div id="mouseBox" class="mouse-box">
     <div class="circle-image">
       <img src="images/pfp.jpg" alt="Image Inside Circle">
     </div>
     <h1>Dre.</h1>
     <h2>Malware & Media Development ++</h2>
-    <a href="https://www.youtube.com" target="_blank">
+    <a href="https://www.roblox.com/users/118708575/profile" target="_blank">
       <img src="images/Icon.gif" alt="Portfolio - SOON" class="portfolio-btn">
     </a>
   </div>
 
-  <!-- Enter Button -->
-  <button class="enter-btn" onclick="startSite()">Enter Site</button>
+  <!-- Portfolio Section -->
+  <div id="portfolio">
+    <h1>Portfolio</h1>
+    <p class="description">Although I am new to starting commisions and dont have much a very large portfolio, I can assure you that choosing me as a developer for your project will be one of the best choices you can make. I can produce well written, organized, code together within close deadlines maintaining all the criteria you asked for. I plan on going to college for Cyber Security and I am currently enrolled in numerous ethical hacking classes with a few certifications; One of those being Python! PS. Also I am certified in Adobe Photoshop, Illustrator, and Premiere Pro. I have an example of a photoshop work I did a long time ago.</p>
+    <div class="portfolio-items">
+      <div class="portfolio-item">
+        <img src="images/1st.jpg" alt="Project 1">
+        <p>Custom Website</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="images/2nd.jpg" alt="Project 2">
+        <p>Minecraft Macro</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="images/3rd.jpg" alt="Project 3">
+        <p>Email Scraper Tool</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="images/4th.png" alt="Project 4">
+        <p>Custom Photoshop Logo</p>
+      </div>
+    </div>
+  </div>
 
   <script>
     function startSite() {
       const video = document.getElementById('background-video');
-      video.muted = false;       // ✅ Unmute the video
-      video.volume = 1.0;         // ✅ Full volume
+      video.muted = false;
+      video.volume = 1.0;
       video.play();
       video.style.opacity = 1;
 
-      document.querySelector('.enter-btn').style.display = 'none'; // hide button
-      document.getElementById('mouseBox').style.display = 'flex';  // show box
+      document.querySelector('.enter-btn').style.display = 'none';
+      document.getElementById('mouseBox').style.display = 'flex';
+      document.getElementById('portfolio').style.display = 'flex';
 
-      // Apply the stronger vignette effect
       document.body.style.background = 'radial-gradient(circle, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 1) 80%)';
+      document.body.style.overflowY = 'auto';
     }
 
     document.addEventListener('mousemove', function(event) {
       const mouseBox = document.getElementById('mouseBox');
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-
-      const deltaX = event.clientX - centerX;
-      const deltaY = event.clientY - centerY;
-
-      // More exaggerated rotation
-      const rotateX = (deltaY / centerY) * 15; // exaggerate rotation
-      const rotateY = (deltaX / centerX) * -15; // exaggerate rotation
-
-      mouseBox.style.transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      if (mouseBox.style.display !== 'none') {
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        const deltaX = event.clientX - centerX;
+        const deltaY = event.clientY - centerY;
+        const rotateX = (deltaY / centerY) * 15;
+        const rotateY = (deltaX / centerX) * -15;
+        mouseBox.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      }
     });
   </script>
 
